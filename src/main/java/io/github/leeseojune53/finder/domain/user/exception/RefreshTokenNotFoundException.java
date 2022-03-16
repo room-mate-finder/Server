@@ -1,4 +1,4 @@
-package io.github.leeseojune53.finder.global.exception;
+package io.github.leeseojune53.finder.domain.user.exception;
 
 import io.github.leeseojune53.finder.global.error.exception.ErrorCode;
 import io.github.leeseojune53.finder.global.error.exception.FinderException;
