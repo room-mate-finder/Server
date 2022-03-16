@@ -9,6 +9,7 @@ import lombok.Getter;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ErrorCode {
 
+    INVALID_ENUM_VALUE(400, "GLOBAL-400-1", "Invalid Enum Value."),
     EXPIRED_TOKEN(401, "GLOBAL-401-1", "Expired token."),
     INVALID_TOKEN(401, "GLOBAL-401-2", "Invalid token."),
     NOT_FOUND(404, "GLOBAL-404-1", "Not Found."),
