@@ -4,6 +4,7 @@ import io.github.leeseojune53.finder.domain.room.domain.Room;
 import io.github.leeseojune53.finder.domain.user.domain.types.LifeStyle;
 import io.github.leeseojune53.finder.domain.user.domain.types.Time;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -57,5 +58,17 @@ public class User {
     @JoinColumn(name = "room_id")
     private Room room;
 
+    @Builder
+    public User(String number, String name) {
+        this.number = number;
+        this.name = name;
+    }
+
+    public void updateUserInformation(String description, LifeStyle lifeStyle, Time bedTime, Time wakeUpTime) {
+        this.description = description;
+        this.lifeStyle = lifeStyle;
+        this.bedTime = bedTime;
+        this.wakeUpTime = wakeUpTime;
+    }
 
 }
