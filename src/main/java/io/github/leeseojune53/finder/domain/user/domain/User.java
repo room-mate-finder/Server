@@ -71,4 +71,8 @@ public class User {
         this.wakeUpTime = wakeUpTime;
     }
 
+    public void setRoomNull() {
+        this.room = null;
+    }
+
 }
