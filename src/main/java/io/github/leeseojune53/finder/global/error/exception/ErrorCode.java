@@ -19,7 +19,9 @@ public enum ErrorCode {
     REFRESH_TOKEN_NOT_FOUND(404, "USER-404-1", "Refresh Token Not Found."),
     CREDENTIALS_NOT_FOUND(404, "USER-404-2", "Credentials Not Found."),
 
-    ROOM_NOT_FOUND(404, "ROOM-404-1", "Room Not Found.");
+    ROOM_NOT_FOUND(404, "ROOM-404-1", "Room Not Found."),
+
+    ALREADY_JOIN_ROOM(400, "INVITE-400-1", "Already Join Room.");
 
     private final int status;
     private final String code;

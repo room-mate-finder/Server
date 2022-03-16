@@ -35,6 +35,7 @@ public class UserController {
     public UserInformationResponse queryInformation() {
         return queryUserInformationService.execute();
     }
+
     @PatchMapping("/information")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateInformation(@RequestBody UpdateInformationRequest request) {

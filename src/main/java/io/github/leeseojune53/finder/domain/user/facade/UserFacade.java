@@ -25,4 +25,9 @@ public class UserFacade {
 
     }
 
+    public User getUserByNumber(String number) {
+        return userRepository.findByNumber(number)
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+    }
+
 }
