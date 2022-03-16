@@ -21,7 +21,7 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 3)
+    @Column(length = 3, unique = true)
     private String roomNumber;
 
     private Integer count;
