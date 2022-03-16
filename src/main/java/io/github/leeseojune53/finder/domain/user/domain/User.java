@@ -1,5 +1,6 @@
 package io.github.leeseojune53.finder.domain.user.domain;
 
+import io.github.leeseojune53.finder.domain.room.domain.Room;
 import io.github.leeseojune53.finder.domain.user.domain.types.LifeStyle;
 import io.github.leeseojune53.finder.domain.user.domain.types.Time;
 import lombok.AccessLevel;
@@ -10,9 +11,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -48,6 +52,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(length = 5)
     private Time wakeUpTime;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "room_id")
+    private Room room;
 
 
 }
