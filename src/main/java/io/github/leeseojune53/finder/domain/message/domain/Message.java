@@ -3,6 +3,7 @@ package io.github.leeseojune53.finder.domain.message.domain;
 import io.github.leeseojune53.finder.domain.room.domain.Room;
 import io.github.leeseojune53.finder.domain.user.domain.User;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -46,5 +47,11 @@ public class Message {
     @CreatedDate
     private LocalDateTime sentAt;
 
+    @Builder
+    public Message(User user, Room room, String content) {
+        this.user = user;
+        this.room = room;
+        this.content = content;
+    }
     
 }
