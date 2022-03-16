@@ -2,12 +2,12 @@ package io.github.leeseojune53.finder.domain.invite.domain;
 
 import io.github.leeseojune53.finder.domain.user.domain.User;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
@@ -42,5 +42,11 @@ public class Invite {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "invited_user_id")
     private User invitedUser;
+
+    @Builder
+    public Invite(User sendUser, User invitedUser) {
+        this.sendUser = sendUser;
+        this.invitedUser = invitedUser;
+    }
 
 }
