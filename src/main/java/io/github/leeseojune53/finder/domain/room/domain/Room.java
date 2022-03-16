@@ -26,4 +26,9 @@ public class Room {
 
     private Integer count;
 
+    public void updateRoomInformation(String roomNumber, Integer count) {
+        this.roomNumber = roomNumber;
+        this.count = count;
+    }
+
 }
