@@ -7,6 +7,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 @RequiredArgsConstructor
 @Component
@@ -21,6 +23,28 @@ public class JwtTokenProvider {
 
     private final JwtProperties jwtProperties;
     private final AuthDetailsService authDetailsService;
+
+    public String generateAccessToken(String number) {
+        return generateToken(number, JwtProperties.ACCESS_TYPE, jwtProperties.getAccessExp());
+    }
+
+    public String generateRefreshToken(String number) {
+        return generateToken(number, JwtProperties.REFRESH_TYPE, jwtProperties.getRefreshExp());
+    }
+
+    public Long getAccessExp() {
+        return System.currentTimeMillis() + jwtProperties.getAccessExp();
+    }
+
+    private String generateToken(String number, String type, Long exp) {
+        return Jwts.builder()
+                .setSubject(number)
+                .setHeaderParam("typ", type)
+                .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + exp))
+                .compact();
+    }
 
     public String resolveToken(HttpServletRequest request) {
         String bearer = request.getHeader(jwtProperties.getHeader());
