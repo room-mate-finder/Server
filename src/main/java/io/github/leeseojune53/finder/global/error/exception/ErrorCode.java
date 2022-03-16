@@ -15,7 +15,8 @@ public enum ErrorCode {
     USER_NOT_FOUND(404, "GLOBAL-404-2", "User Not Found."),
     INTERNAL_SERVER_ERROR(500, "GLOBAL-500-1", "Internal Server Error."),
 
-    REFRESH_TOKEN_NOT_FOUND(404, "USER-404-1", "Refresh Token Not Found.");
+    REFRESH_TOKEN_NOT_FOUND(404, "USER-404-1", "Refresh Token Not Found."),
+    CREDENTIALS_NOT_FOUND(404, "USER-404-2", "Credentials Not Found.");
 
     private final int status;
     private final String code;
