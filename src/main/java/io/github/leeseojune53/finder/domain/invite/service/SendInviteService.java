@@ -24,7 +24,7 @@ public class SendInviteService {
         User user = userFacade.getCurrentUser();
         User invitedUser = userFacade.getUserByNumber(number);
 
-        if(user.getNumber().charAt(0) != invitedUser.getNumber().charAt(0)) {
+        if(user.getGrade().equals(invitedUser.getGrade())) {
             throw AnotherGradeException.EXCEPTION;
         }
 
