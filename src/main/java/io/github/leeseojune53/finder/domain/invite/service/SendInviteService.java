@@ -4,6 +4,7 @@ import io.github.leeseojune53.finder.domain.invite.domain.Invite;
 import io.github.leeseojune53.finder.domain.invite.domain.repository.InviteRepository;
 import io.github.leeseojune53.finder.domain.invite.exception.AlreadyInvitedException;
 import io.github.leeseojune53.finder.domain.invite.exception.AlreadyJoinRoomException;
+import io.github.leeseojune53.finder.domain.invite.exception.AnotherGradeException;
 import io.github.leeseojune53.finder.domain.room.domain.Room;
 import io.github.leeseojune53.finder.domain.room.domain.repositroy.RoomRepository;
 import io.github.leeseojune53.finder.domain.user.domain.User;
@@ -23,10 +24,14 @@ public class SendInviteService {
         User user = userFacade.getCurrentUser();
         User invitedUser = userFacade.getUserByNumber(number);
 
+        if(user.getNumber().charAt(0) != invitedUser.getNumber().charAt(0)) {
+            throw AnotherGradeException.EXCEPTION;
+        }
+
         if(invitedUser.getRoom() != null) {
             throw AlreadyJoinRoomException.EXCEPTION;
         }
-        
+
         if(inviteRepository.findByInvitedUserAndSendUser(invitedUser, user).isPresent()) {
             throw AlreadyInvitedException.EXCEPTION;
         }
