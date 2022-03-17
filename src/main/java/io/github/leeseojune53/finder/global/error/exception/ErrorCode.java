@@ -21,7 +21,8 @@ public enum ErrorCode {
 
     ROOM_NOT_FOUND(404, "ROOM-404-1", "Room Not Found."),
 
-    ALREADY_JOIN_ROOM(400, "INVITE-400-1", "Already Join Room.");
+    ALREADY_JOIN_ROOM(409, "INVITE-409-1", "Already Join Room."),
+    ALREADY_INVITED(409, "INVITE-409-2", "Already Invited.");
 
     private final int status;
     private final String code;
