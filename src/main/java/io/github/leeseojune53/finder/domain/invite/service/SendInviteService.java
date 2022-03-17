@@ -2,6 +2,7 @@ package io.github.leeseojune53.finder.domain.invite.service;
 
 import io.github.leeseojune53.finder.domain.invite.domain.Invite;
 import io.github.leeseojune53.finder.domain.invite.domain.repository.InviteRepository;
+import io.github.leeseojune53.finder.domain.invite.exception.AlreadyInvitedException;
 import io.github.leeseojune53.finder.domain.invite.exception.AlreadyJoinRoomException;
 import io.github.leeseojune53.finder.domain.room.domain.Room;
 import io.github.leeseojune53.finder.domain.room.domain.repositroy.RoomRepository;
@@ -24,6 +25,10 @@ public class SendInviteService {
 
         if(invitedUser.getRoom() != null) {
             throw AlreadyJoinRoomException.EXCEPTION;
+        }
+        
+        if(inviteRepository.findByInvitedUserAndSendUser(invitedUser, user).isPresent()) {
+            throw AlreadyInvitedException.EXCEPTION;
         }
 
         if(inviteRepository.findByInvitedUserAndSendUser(user, invitedUser).isPresent()) {
