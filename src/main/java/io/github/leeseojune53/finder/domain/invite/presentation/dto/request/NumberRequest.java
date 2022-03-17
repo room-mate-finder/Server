@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 
 @Getter
 @NoArgsConstructor
-public class SendInviteRequest {
+public class NumberRequest {
 
     @NotBlank(message = "number는 null이거나 비어있으면 안됩니다.")
     @Size(max = 4, message = "number는 4글자 이하여아 합니다.")
