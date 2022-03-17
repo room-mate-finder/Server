@@ -54,6 +54,10 @@ public class User {
     @Column(length = 5)
     private Time wakeUpTime;
 
+    @NotNull
+    @Column(length = 1)
+    private String grade;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
     private Room room;
@@ -62,6 +66,7 @@ public class User {
     public User(String number, String name) {
         this.number = number;
         this.name = name;
+        this.grade = String.valueOf(number.charAt(0));
     }
 
     public void updateUserInformation(String description, LifeStyle lifeStyle, Time bedTime, Time wakeUpTime) {
