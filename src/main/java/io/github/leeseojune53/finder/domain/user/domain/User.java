@@ -75,4 +75,8 @@ public class User {
         this.room = null;
     }
 
+    public void setRoom(Room room){
+        this.room = room;
+    }
+
 }
