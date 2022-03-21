@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RequiredArgsConstructor
 @RequestMapping("/users")
 @RestController
@@ -38,7 +40,7 @@ public class UserController {
 
     @PatchMapping("/information")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateInformation(@RequestBody UpdateInformationRequest request) {
+    public void updateInformation(@RequestBody @Valid UpdateInformationRequest request) {
         updateUserInformationService.execute(request);
     }
 
