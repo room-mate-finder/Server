@@ -39,7 +39,7 @@ public class User {
     @Column(length = 5)
     private String name;
 
-    @Column
+    @Column(length = 200)
     private String description;
 
     @Enumerated(EnumType.STRING)
