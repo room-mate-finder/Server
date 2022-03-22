@@ -25,3 +25,12 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build --info
+
+      - name: check gradle
+        run: ./gradlew check
+
+      - name: codecov gradle
+        run: ./gradlew jacocoTestReport
+
+      - name: codecov upload
+        run: bash <(curl -s https://codecov.io/bash)
