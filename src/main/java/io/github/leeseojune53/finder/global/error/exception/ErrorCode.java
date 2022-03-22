@@ -24,7 +24,12 @@ public enum ErrorCode {
     ANOTHER_GRADE(400, "INVITE-400-1", "Another Grade."),
     INVITE_NOT_FOUND(404, "INVITE-404-1", "Invite Not Found."),
     ALREADY_JOIN_ROOM(409, "INVITE-409-1", "Already Join Room."),
-    ALREADY_INVITED(409, "INVITE-409-2", "Already Invited.");
+    ALREADY_INVITED(409, "INVITE-409-2", "Already Invited."),
+
+    OTHER_BAD_REQUEST(400, "OTHER-400-1", "BadRequest"),
+    OTHER_UNAUTHORIZED(401, "OTHER-401-1", "Unauthorized"),
+    OTHER_FORBIDDEN(403, "OTHER-403-1", "Forbidden"),
+    OTHER_EXPIRED_TOKEN(419, "OTHER-419", "Expired Token");
 
     private final int status;
     private final String code;
