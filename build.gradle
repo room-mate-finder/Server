@@ -53,3 +53,7 @@ jacocoTestReport {
         }))
     }
 }
+
+jar {
+    enabled = false
+}
