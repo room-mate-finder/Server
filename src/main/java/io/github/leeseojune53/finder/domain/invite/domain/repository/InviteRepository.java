@@ -11,5 +11,6 @@ import java.util.Optional;
 @Repository
 public interface InviteRepository extends CrudRepository<Invite, Long> {
     Optional<Invite> findByInvitedUserAndSendUser(User invitedUser, User sendUser);
+
     List<Invite> findByInvitedUser(User invitedUser);
 }

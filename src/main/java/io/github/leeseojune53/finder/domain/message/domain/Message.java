@@ -53,5 +53,5 @@ public class Message {
         this.room = room;
         this.content = content;
     }
-    
+
 }

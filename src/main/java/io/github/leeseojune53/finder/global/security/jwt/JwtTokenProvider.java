@@ -39,7 +39,7 @@ public class JwtTokenProvider {
                         .token(token)
                         .ttl(jwtProperties.getRefreshExp() / 1000)
                         .build()
-                );
+        );
         return token;
     }
 
@@ -67,7 +67,7 @@ public class JwtTokenProvider {
     }
 
     public Authentication getAuthentication(String token) {
-        if(isRefreshToken(token))
+        if (isRefreshToken(token))
             throw InvalidTokenException.EXCEPTION;
 
         UserDetails userDetails = authDetailsService.loadUserByUsername(getJws(token).getBody().getSubject());
