@@ -23,7 +23,7 @@ public class AuthService {
             throw InvalidPasswordException.EXCEPTION;
         }
 
-        return userFacade.queryTokenResponse(request.getNumber());
+        return userFacade.getTokenResponse(request.getNumber());
     }
 
 }
