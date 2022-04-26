@@ -1,5 +1,7 @@
 package io.github.leeseojune53.finder.global.security.jwt;
 
+import io.github.leeseojune53.finder.domain.refresh_token.domain.RefreshToken;
+import io.github.leeseojune53.finder.domain.refresh_token.domain.repository.RefreshTokenRepository;
 import io.github.leeseojune53.finder.global.exception.ExpiredTokenException;
 import io.github.leeseojune53.finder.global.exception.InvalidTokenException;
 import io.github.leeseojune53.finder.global.security.auth.AuthDetailsService;
@@ -23,13 +25,22 @@ public class JwtTokenProvider {
 
     private final JwtProperties jwtProperties;
     private final AuthDetailsService authDetailsService;
+    private final RefreshTokenRepository refreshTokenRepository;
 
     public String generateAccessToken(String number) {
         return generateToken(number, JwtProperties.ACCESS_TYPE, jwtProperties.getAccessExp());
     }
 
     public String generateRefreshToken(String number) {
-        return generateToken(number, JwtProperties.REFRESH_TYPE, jwtProperties.getRefreshExp());
+        String token = generateToken(number, JwtProperties.REFRESH_TYPE, jwtProperties.getRefreshExp());
+        refreshTokenRepository.save(
+                RefreshToken.builder()
+                        .number(number)
+                        .token(token)
+                        .ttl(jwtProperties.getRefreshExp() / 1000)
+                        .build()
+                );
+        return token;
     }
 
     public Long getAccessExp() {
