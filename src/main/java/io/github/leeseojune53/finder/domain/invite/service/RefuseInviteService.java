@@ -19,7 +19,7 @@ public class RefuseInviteService {
         User sendUser = userFacade.getUserByNumber(number);
         inviteRepository.delete(
                 inviteRepository.findByInvitedUserAndSendUser(user, sendUser)
-                .orElseThrow(() -> InviteNotFoundException.EXCEPTION)
+                        .orElseThrow(() -> InviteNotFoundException.EXCEPTION)
         );
     }
 

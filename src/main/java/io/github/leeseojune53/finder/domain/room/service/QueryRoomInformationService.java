@@ -15,7 +15,7 @@ public class QueryRoomInformationService {
 
     public RoomInformationResponse execute() {
         Room room = userFacade.getCurrentUser().getRoom();
-        if(room == null) {
+        if (room == null) {
             throw RoomNotFoundException.EXCEPTION;
         }
         return RoomInformationResponse.builder()

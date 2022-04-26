@@ -24,20 +24,20 @@ public class SendInviteService {
         User user = userFacade.getCurrentUser();
         User invitedUser = userFacade.getUserByNumber(number);
 
-        if(user.getGrade().equals(invitedUser.getGrade())) {
+        if (user.getGrade().equals(invitedUser.getGrade())) {
             throw AnotherGradeException.EXCEPTION;
         }
 
-        if(invitedUser.getRoom() != null) {
+        if (invitedUser.getRoom() != null) {
             throw AlreadyJoinRoomException.EXCEPTION;
         }
 
-        if(inviteRepository.findByInvitedUserAndSendUser(invitedUser, user).isPresent()) {
+        if (inviteRepository.findByInvitedUserAndSendUser(invitedUser, user).isPresent()) {
             throw AlreadyInvitedException.EXCEPTION;
         }
 
-        if(inviteRepository.findByInvitedUserAndSendUser(user, invitedUser).isPresent()) {
-            if(user.getRoom() != null) {
+        if (inviteRepository.findByInvitedUserAndSendUser(user, invitedUser).isPresent()) {
+            if (user.getRoom() != null) {
                 invitedUser.setRoom(user.getRoom());
             } else {
                 Room room = roomRepository.save(new Room());

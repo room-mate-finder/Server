@@ -30,14 +30,14 @@ public class QueryRoomMateService {
         return new RoomMateResponse(
                 userList.stream()
                         .map(user -> RoomMateResponse.RoomMate.builder()
-                                        .number(user.getNumber())
-                                        .name(user.getName())
-                                        .description(user.getDescription())
-                                        .lifeStyle(user.getLifeStyle())
-                                        .bedTime(user.getBedTime())
-                                        .wakeUpTime(user.getWakeUpTime())
-                                        .build()
-                                ).collect(Collectors.toList())
+                                .number(user.getNumber())
+                                .name(user.getName())
+                                .description(user.getDescription())
+                                .lifeStyle(user.getLifeStyle())
+                                .bedTime(user.getBedTime())
+                                .wakeUpTime(user.getWakeUpTime())
+                                .build()
+                        ).collect(Collectors.toList())
         );
 
     }

@@ -17,7 +17,7 @@ public class UpdateRoomInformationService {
     @Transactional
     public void execute(UpdateRoomInformationRequest request) {
         Room room = userFacade.getCurrentUser().getRoom();
-        if(room == null) {
+        if (room == null) {
             throw RoomNotFoundException.EXCEPTION;
         }
         room.updateRoomInformation(request.getRoomNumber(), request.getCount());

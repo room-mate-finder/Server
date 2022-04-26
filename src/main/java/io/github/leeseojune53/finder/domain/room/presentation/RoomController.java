@@ -43,7 +43,7 @@ public class RoomController {
     public void leaveRoom() {
         leaveRoomService.execute();
     }
-    
+
     @GetMapping("/mates")
     public RoomMateResponse queryRoomMates() {
         return queryRoomMateService.execute();

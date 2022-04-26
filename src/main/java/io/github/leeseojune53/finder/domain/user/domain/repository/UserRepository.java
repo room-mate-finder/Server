@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
     Optional<User> findByNumber(String number);
+
     List<User> findByGrade(String grade);
 }

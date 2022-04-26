@@ -1,6 +1,5 @@
 package io.github.leeseojune53.finder.domain.room.domain;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
