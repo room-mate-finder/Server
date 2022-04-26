@@ -1,7 +1,6 @@
 package io.github.leeseojune53.finder.global.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.leeseojune53.finder.global.config.FilterConfig;
 import io.github.leeseojune53.finder.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
