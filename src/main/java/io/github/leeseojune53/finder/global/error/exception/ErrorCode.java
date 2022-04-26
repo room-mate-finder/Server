@@ -18,6 +18,7 @@ public enum ErrorCode {
 
     REFRESH_TOKEN_NOT_FOUND(404, "USER-404-1", "Refresh Token Not Found."),
     CREDENTIALS_NOT_FOUND(404, "USER-404-2", "Credentials Not Found."),
+    ALREADY_EXIST_NUMBER(409, "USER-409-1", "Already Exist Number"),
 
     ROOM_NOT_FOUND(404, "ROOM-404-1", "Room Not Found."),
 
