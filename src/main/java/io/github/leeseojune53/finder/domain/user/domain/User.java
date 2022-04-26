@@ -36,6 +36,10 @@ public class User {
     private String number;
 
     @NotNull
+    @Column(length = 60)
+    private String password;
+
+    @NotNull
     @Column(length = 5)
     private String name;
 
@@ -63,9 +67,10 @@ public class User {
     private Room room;
 
     @Builder
-    public User(String number, String name) {
+    public User(String number, String name, String password) {
         this.number = number;
         this.name = name;
+        this.password = password;
         this.grade = String.valueOf(number.charAt(0));
     }
 
