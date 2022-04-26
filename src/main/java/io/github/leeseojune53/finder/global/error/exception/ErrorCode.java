@@ -16,6 +16,7 @@ public enum ErrorCode {
     USER_NOT_FOUND(404, "GLOBAL-404-2", "User Not Found."),
     INTERNAL_SERVER_ERROR(500, "GLOBAL-500-1", "Internal Server Error."),
 
+    INVALID_PASSWORD(400, "USER-400-1", "Invalid Password"),
     REFRESH_TOKEN_NOT_FOUND(404, "USER-404-1", "Refresh Token Not Found."),
     CREDENTIALS_NOT_FOUND(404, "USER-404-2", "Credentials Not Found."),
     ALREADY_EXIST_NUMBER(409, "USER-409-1", "Already Exist Number"),
