@@ -24,7 +24,12 @@ public class ErrorHandlingFilter extends OncePerRequestFilter {
         } catch (FinderException e) {
             errorCodeToJson(response, e.getErrorCode());
         } catch (Exception e) {
-            errorCodeToJson(response, ErrorCode.INTERNAL_SERVER_ERROR);
+            if(e.getCause() instanceof FinderException) {
+                errorCodeToJson(response, ((FinderException) e.getCause()).getErrorCode());
+            } else {
+                e.printStackTrace();
+                errorCodeToJson(response, ErrorCode.INTERNAL_SERVER_ERROR);
+            }
         }
     }
 

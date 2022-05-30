@@ -1,5 +1,6 @@
 package io.github.leeseojune53.finder.global.security.jwt;
 
+import io.github.leeseojune53.finder.global.exception.InvalidTokenException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,6 +23,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         if (token != null) {
             Authentication authentication = jwtTokenProvider.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
+        } else {
+            SecurityContextHolder.clearContext();
         }
         filterChain.doFilter(request, response);
     }
