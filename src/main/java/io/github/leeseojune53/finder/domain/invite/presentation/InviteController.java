@@ -22,13 +22,13 @@ public class InviteController {
     private final SendInviteService sendInviteService;
     private final RefuseInviteService refuseInviteService;
 
-    @PostMapping("/")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void sendInvite(@RequestBody @Valid NumberRequest request) {
         sendInviteService.execute(request.getNumber());
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void refuseInvite(@RequestBody @Valid NumberRequest request) {
         refuseInviteService.execute(request.getNumber());
