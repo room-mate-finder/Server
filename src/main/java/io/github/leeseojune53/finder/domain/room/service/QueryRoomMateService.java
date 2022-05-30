@@ -25,7 +25,11 @@ public class QueryRoomMateService {
         List<User> userList = inviteRepository.findByInvitedUser(currentUser)
                 .stream().map(Invite::getSendUser)
                 .collect(Collectors.toList());
-        userList.addAll(userRepository.findByGrade(currentUser.getGrade()));
+        List<User> tempUserList = userRepository.findByGrade(currentUser.getGrade());
+
+        tempUserList.removeAll(userList);
+
+        userList.addAll(tempUserList);
 
         return new RoomMateResponse(
                 userList.stream()

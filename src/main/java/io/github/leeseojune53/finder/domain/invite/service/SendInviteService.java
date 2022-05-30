@@ -12,6 +12,8 @@ import io.github.leeseojune53.finder.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @RequiredArgsConstructor
 @Service
 public class SendInviteService {
@@ -20,16 +22,13 @@ public class SendInviteService {
     private final InviteRepository inviteRepository;
     private final RoomRepository roomRepository;
 
+    @Transactional
     public void execute(String number) {
         User user = userFacade.getCurrentUser();
         User invitedUser = userFacade.getUserByNumber(number);
 
-        if (user.getGrade().equals(invitedUser.getGrade())) {
+        if (!user.getGrade().equals(invitedUser.getGrade())) {
             throw AnotherGradeException.EXCEPTION;
-        }
-
-        if (invitedUser.getRoom() != null) {
-            throw AlreadyJoinRoomException.EXCEPTION;
         }
 
         if (inviteRepository.findByInvitedUserAndSendUser(invitedUser, user).isPresent()) {
@@ -39,6 +38,8 @@ public class SendInviteService {
         if (inviteRepository.findByInvitedUserAndSendUser(user, invitedUser).isPresent()) {
             if (user.getRoom() != null) {
                 invitedUser.setRoom(user.getRoom());
+            } else if(invitedUser.getRoom() != null) {
+                user.setRoom(invitedUser.getRoom());
             } else {
                 Room room = roomRepository.save(new Room());
                 user.setRoom(room);
